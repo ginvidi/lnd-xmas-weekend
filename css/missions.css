@@ -1,0 +1,448 @@
+/* ── PAGINA MISSIONI ─────────────────────────────────────────── */
+
+/* Contatore stelle e regole nell'hero */
+.starbar {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 28px;
+  padding: 12px 22px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text-dim);
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.starbar strong {
+  color: var(--gold);
+  font-size: 1.15rem;
+}
+
+.starbar.is-complete {
+  border-color: var(--gold);
+  box-shadow: 0 0 24px rgba(212, 175, 120, 0.35);
+}
+
+.rules {
+  display: grid;
+  gap: 8px;
+  max-width: 560px;
+  margin: 28px auto 0;
+  text-align: left;
+  color: var(--text-dim);
+  font-size: 0.92rem;
+}
+
+/* Sezione missioni */
+.missions__head {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.missions__title {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  margin-top: 10px;
+}
+
+.missions__intro {
+  margin-top: 10px;
+  color: var(--text-dim);
+  font-size: 0.95rem;
+}
+
+.missions__all-done {
+  margin-bottom: 24px;
+  padding: 14px 18px;
+  background: rgba(60, 122, 92, 0.18);
+  border: 1px solid var(--pine);
+  border-radius: var(--radius-md);
+  text-align: center;
+  font-weight: 600;
+  color: var(--cream);
+}
+
+.mgroup + .mgroup {
+  margin-top: 36px;
+}
+
+.mgroup__label {
+  margin-bottom: 14px;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.mgroup__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: start;
+  gap: 16px;
+}
+
+/* Scheda missione */
+.mcard {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  transition: border-color 0.2s ease;
+}
+
+.mcard.is-done {
+  border-color: rgba(60, 122, 92, 0.7);
+}
+
+.mcard__head-wrap {
+  font: inherit;
+}
+
+.mcard__head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 16px 18px;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  border-radius: var(--radius-md);
+}
+
+.mcard__head:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: -2px;
+}
+
+.mcard__icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: var(--gold-soft);
+  font-size: 1.45rem;
+}
+
+.mcard__info {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.mcard__title {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--cream);
+}
+
+.mcard__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+.mcard__stars {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.mcard__badge {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  font-size: 0.72rem;
+}
+
+.mcard__badge--choice {
+  background: rgba(179, 67, 90, 0.14);
+  border-color: rgba(179, 67, 90, 0.4);
+}
+
+.mcard__check {
+  display: none;
+  flex: none;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--pine);
+  color: var(--cream);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.mcard.is-done .mcard__check {
+  display: grid;
+}
+
+.mcard__toggle {
+  flex: none;
+  color: var(--text-dim);
+  transition: transform 0.2s ease;
+}
+
+.mcard__head[aria-expanded="true"] .mcard__toggle {
+  transform: rotate(180deg);
+}
+
+.mcard__body {
+  padding: 0 18px 18px;
+}
+
+.mcard__location {
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  color: var(--gold);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.mcard__desc {
+  margin-top: 8px;
+  color: var(--text-dim);
+  font-size: 0.92rem;
+}
+
+.mcard__bonus {
+  margin-top: 14px;
+  color: var(--text);
+  font-size: 0.88rem;
+  font-style: italic;
+}
+
+/* Gioco con le caselle */
+.mgame {
+  margin-top: 16px;
+  padding: 14px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.mgame__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.mgame__head strong {
+  color: var(--cream);
+  font-weight: 600;
+}
+
+.mgame__progress {
+  flex: none;
+  color: var(--gold);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.mgame__list {
+  display: grid;
+  gap: 2px;
+}
+
+.game-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.game-item label {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 9px 6px;
+  border-radius: 8px;
+  font-size: 0.92rem;
+  cursor: pointer;
+}
+
+.game-item label:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.game-check {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  margin: 2px 0 0;
+  accent-color: var(--gold);
+  cursor: pointer;
+}
+
+.game-check:checked + .game-text {
+  color: var(--text-dim);
+  text-decoration: line-through;
+  text-decoration-color: rgba(212, 175, 120, 0.6);
+}
+
+.game-item--phrase .game-text {
+  display: grid;
+  gap: 2px;
+}
+
+.phrase-en {
+  color: var(--cream);
+  font-weight: 600;
+}
+
+.phrase-it {
+  color: var(--text-dim);
+  font-size: 0.82rem;
+}
+
+.phrase-audio {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: transparent;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.phrase-audio.is-speaking {
+  border-color: var(--gold);
+  background: var(--gold-soft);
+}
+
+.mgame__error {
+  margin-top: 14px;
+  padding: 10px 12px;
+  background: rgba(179, 67, 90, 0.12);
+  border: 1px solid rgba(179, 67, 90, 0.4);
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+}
+
+/* Pulsanti completa / annulla */
+.mcard__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.mbtn,
+.mbtn-undo,
+.tools__btn {
+  padding: 11px 18px;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.mbtn {
+  flex: 1;
+  border: 1px solid var(--gold);
+  background: var(--gold);
+  color: var(--bg);
+}
+
+.mbtn:disabled {
+  border-color: var(--pine);
+  background: rgba(60, 122, 92, 0.25);
+  color: var(--cream);
+  cursor: default;
+}
+
+.mbtn-undo,
+.tools__btn {
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-dim);
+}
+
+.mbtn-undo:hover,
+.tools__btn:hover {
+  color: var(--text);
+  border-color: var(--gold);
+}
+
+.mbtn:focus-visible,
+.mbtn-undo:focus-visible,
+.tools__btn:focus-visible,
+.phrase-audio:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* Strumenti: backup e azzeramento */
+.progress-tools {
+  padding-top: 0;
+}
+
+.tools {
+  padding: 22px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+
+.tools__title {
+  font-size: 1.1rem;
+  margin-bottom: 14px;
+}
+
+.tools__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.tools__btn--danger:hover {
+  border-color: var(--berry);
+}
+
+.tools__status:not(:empty) {
+  margin-top: 12px;
+  font-size: 0.88rem;
+  color: var(--text);
+}
+
+.tools__status.is-warn {
+  color: #e8a0ae;
+}
+
+@media (max-width: 760px) {
+  .mgroup__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .mcard__head {
+    padding: 14px;
+    gap: 12px;
+  }
+
+  .mcard__body {
+    padding: 0 14px 14px;
+  }
+}
