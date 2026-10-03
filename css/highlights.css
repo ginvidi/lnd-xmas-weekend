@@ -1,0 +1,62 @@
+/* ── COSE DA FARE / HIGHLIGHTS ───────────────────────────────── */
+.highlights {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.highlights__head {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.highlights__title {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  margin-top: 10px;
+}
+
+.highlights__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.highlight-card {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.highlight-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold);
+}
+
+.highlight-card__icon {
+  font-size: 1.6rem;
+  margin-bottom: 14px;
+}
+
+.highlight-card__title {
+  font-size: 1.05rem;
+  margin-bottom: 8px;
+}
+
+.highlight-card__desc {
+  color: var(--text-dim);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 860px) {
+  .highlights__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .highlights__grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,29 @@
+/* ── DESIGN TOKENS ──────────────────────────────────────────────
+   Palette invernale/natalizia ma sobria: navy profondo, oro tenue,
+   un rosso smorzato usato con parsimonia come accento. */
+:root {
+  --bg:        #0e1729;
+  --surface:   #152238;
+  --surface-2: #1c2e4a;
+  --border:    rgba(212, 175, 120, 0.16);
+
+  --text:      #eef2f8;
+  --text-dim:  #9fb0c8;
+
+  --gold:      #d4af78;
+  --gold-soft: rgba(212, 175, 120, 0.14);
+  --pine:      #3c7a5c;
+  --berry:     #b3435a;
+  --cream:     #f5efe3;
+
+  --font-heading: 'Fraunces', Georgia, serif;
+  --font-body:    'Inter', system-ui, -apple-system, sans-serif;
+
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+
+  --shadow-card: 0 12px 30px rgba(4, 10, 20, 0.35);
+
+  --content-width: 1080px;
+}

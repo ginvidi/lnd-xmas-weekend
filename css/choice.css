@@ -1,0 +1,97 @@
+/* ── SCELTE / OPZIONI (schede dentro il giorno) ──────────────── */
+.choice {
+  margin: 8px 0;
+  padding: 18px 18px 6px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+.choice + .block,
+.block + .choice {
+  margin-top: 14px;
+}
+
+.choice__title {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.choice__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.choice__tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-dim);
+  font: inherit;
+  font-size: 0.86rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.choice__tab:hover {
+  color: var(--text);
+  border-color: var(--gold);
+}
+
+.choice__tab[aria-selected="true"] {
+  background: var(--gold-soft);
+  border-color: var(--gold);
+  color: var(--cream);
+}
+
+.choice__tab:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.choice__badge {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--pine);
+  color: var(--cream);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.choice__summary {
+  color: var(--text-dim);
+  font-size: 0.88rem;
+  font-style: italic;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+
+.choice__panel .block:last-child {
+  border-bottom: none;
+}
+
+/* ── AVVISO DI GIORNATA ──────────────────────────────────────── */
+.callout {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding: 14px 16px;
+  background: rgba(179, 67, 90, 0.10);
+  border: 1px solid rgba(179, 67, 90, 0.35);
+  border-left: 3px solid var(--berry);
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  color: var(--text);
+}

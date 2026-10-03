@@ -1,0 +1,14 @@
+# macOS
+.DS_Store
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+
+# Claude Code (config locale, contiene percorsi assoluti)
+.claude/
+
+# Dipendenze e log (se un giorno aggiungiamo tooling)
+node_modules/
+*.log

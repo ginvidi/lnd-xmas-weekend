@@ -1,0 +1,58 @@
+/* ── INFO UTILI ───────────────────────────────────────────────── */
+.info__head {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.info__title {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  margin-top: 10px;
+}
+
+.info__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.info-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 26px;
+}
+
+.info-card__title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1rem;
+  margin-bottom: 14px;
+  color: var(--gold);
+}
+
+.info-card ul {
+  display: grid;
+  gap: 10px;
+}
+
+.info-card li {
+  color: var(--text-dim);
+  font-size: 0.92rem;
+  padding-left: 18px;
+  position: relative;
+}
+
+.info-card li::before {
+  content: '·';
+  position: absolute;
+  left: 4px;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+@media (max-width: 860px) {
+  .info__grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,34 @@
+/* ── NEVE (tocco natalizio leggero) ──────────────────────────── */
+.snow {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.snow__flake {
+  position: absolute;
+  top: -10px;
+  color: var(--cream);
+  opacity: 0.35;
+  will-change: transform;
+  animation-name: snow-fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes snow-fall {
+  from {
+    transform: translateY(-10px) translateX(0);
+  }
+  to {
+    transform: translateY(105vh) translateX(20px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .snow {
+    display: none;
+  }
+}
