@@ -3,11 +3,13 @@
 @import 'tokens.css';
 @import 'base.css';
 @import 'snow.css';
+@import 'nav.css';
 @import 'header.css';
 @import 'itinerary.css';
 @import 'choice.css';
 @import 'highlights.css';
 @import 'info.css';
+@import 'missions.css';
 @import 'footer.css';
 
 main {

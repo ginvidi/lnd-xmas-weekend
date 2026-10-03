@@ -5,6 +5,7 @@
   document.title = content.meta.title;
 
   window.App.initSnow($('snow'));
+  window.App.renderNav($('topnav'), 'itinerary');
   window.App.renderHero($('hero'), content);
   window.App.renderItinerary($('itinerary'), content);
   window.App.initOptions($('itinerary'));
