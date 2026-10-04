@@ -26,7 +26,7 @@ window.CONTENT = {
       {
         number: '01',
         label: 'Sabato',
-        theme: 'Musei + Harrods',
+        theme: 'Musei, parco + Harrods',
         date: '6 Dicembre',
         items: [
           {
@@ -42,16 +42,59 @@ window.CONTENT = {
             desc: 'In alternativa South Kensington Kitchen. Con calma, senza correre.',
           },
           {
-            time: '14:00',
-            icon: '🚀',
-            title: 'Science Museum',
-            desc: 'A due passi dal Natural History Museum, dopo pranzo e con più calma.',
-          },
-          {
-            time: 'Pomeriggio',
-            icon: '🚌',
-            title: 'Bus 74 fino a Knightsbridge',
-            desc: 'Si prende a South Kensington Station. Poi giro a piedi: Harrods con il Christmas World al piano -1, Harvey Nichols e Sloane Street.',
+            type: 'choice',
+            title: 'Dopo pranzo: museo o parco?',
+            options: [
+              {
+                label: 'Opzione 1 · Passeggiata a Hyde Park',
+                recommended: true,
+                summary: 'Niente musei: si arriva a Harrods a piedi attraversando il parco. Partire subito dopo pranzo, il sole tramonta verso le 15:50.',
+                blocks: [
+                  {
+                    time: '14:00',
+                    icon: '🏛️',
+                    title: 'Royal Albert Hall e Albert Memorial',
+                    desc: 'Su per Exhibition Road, circa 10 minuti a piedi. Il memoriale dorato è perfetto per una foto.',
+                  },
+                  {
+                    time: '14:30',
+                    icon: '🧚',
+                    title: 'Kensington Gardens',
+                    desc: 'Statua di Peter Pan sul Long Water. Se c’è energia, Diana Memorial Playground con la nave dei pirati (gratis, 10–15 minuti più in là).',
+                  },
+                  {
+                    time: '15:30',
+                    icon: '🦢',
+                    title: 'Lungo il Serpentine',
+                    desc: 'Cigni e anatre sul lago, poi si esce dal lato di Knightsbridge.',
+                  },
+                  {
+                    time: 'Tramonto',
+                    icon: '🛍️',
+                    title: 'Harrods e Knightsbridge',
+                    desc: 'Dal parco 5–10 minuti a piedi. Christmas World al piano -1, Harvey Nichols e Sloane Street, con le luci già accese.',
+                  },
+                ],
+              },
+              {
+                label: 'Opzione 2 · Science Museum',
+                summary: 'Se piove o fa troppo freddo: si resta al chiuso.',
+                blocks: [
+                  {
+                    time: '14:00',
+                    icon: '🚀',
+                    title: 'Science Museum',
+                    desc: 'A due passi dal Natural History Museum, dopo pranzo e con più calma.',
+                  },
+                  {
+                    time: 'Pomeriggio',
+                    icon: '🚌',
+                    title: 'Bus 74 fino a Knightsbridge',
+                    desc: 'Si prende a South Kensington Station. Poi giro a piedi: Harrods con il Christmas World al piano -1, Harvey Nichols e Sloane Street.',
+                  },
+                ],
+              },
+            ],
           },
           {
             time: 'Sera',
@@ -301,6 +344,7 @@ window.CONTENT = {
           'St Paul’s chiusa ai turisti la domenica',
           'St Paul’s: ultimo ingresso alle visite di solito alle 16:00 (lun–sab)',
           'Winter Wonderland: meglio il lunedì mattina, il sabato sera è molto affollato',
+          'Pista di pattinaggio a Winter Wonderland: prenotare i biglietti in anticipo',
           'Controllare orari e prenotazioni di musei, Tower Bridge Exhibition e Borough Market',
         ],
       },

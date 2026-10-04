@@ -50,7 +50,7 @@ window.MISSIONS = {
   },
   days: [
     { id: 'always', label: '🎒 Per tutto il weekend' },
-    { id: 'sat', label: '🦕 Sabato 6 dicembre · Musei + Harrods' },
+    { id: 'sat', label: '🦕 Sabato 6 dicembre · Musei, parco + Harrods' },
     { id: 'sun', label: '🌉 Domenica 7 dicembre · a seconda dell’opzione' },
     { id: 'mon', label: '✨ Lunedì 8 dicembre · Luci di Natale' },
   ],
@@ -165,6 +165,28 @@ window.MISSIONS = {
         ],
       },
       bonus: '✨ Sfida bonus: inventa una macchina che fa i compiti al posto tuo. Spiega a mamma e papà come funziona in 30 secondi!',
+    },
+    {
+      id: 'parco',
+      day: 'sat',
+      optional: true,
+      stars: 150,
+      icon: '🦢',
+      title: 'L’Esploratore del Parco',
+      location: '📍 Kensington Gardens e Hyde Park · fino a Knightsbridge',
+      desc: 'Al posto del Science Museum, si attraversa il parco più famoso di Londra a piedi. Qui vive Peter Pan, il bambino che non voleva crescere!',
+      game: {
+        title: '🎮 Il tuo gioco · La mappa del tesoro',
+        items: [
+          'L’Albert Memorial, la statua tutta d’oro ✨',
+          'La statua di Peter Pan 🧚',
+          'Un cigno bianco sul lago 🦢',
+          'Uno scoiattolo grigio 🐿️',
+          'La nave dei pirati del Diana Memorial Playground 🏴‍☠️',
+          'Un cane con il cappottino 🐕',
+        ],
+      },
+      bonus: '✨ Sfida bonus: contate i cigni che vedete sul Serpentine. Chi indovina il numero prima di arrivare al lago vince!',
     },
     {
       id: 'bus74',
