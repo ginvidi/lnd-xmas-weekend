@@ -88,11 +88,17 @@
           )
           .join('')}
       </div>
+      <div class="mapsearch">
+        <label class="mapsearch__label" for="map-search">Cerca un posto</label>
+        <input class="mapsearch__input" id="map-search" type="search" autocomplete="off"
+               placeholder="🔍 Cerca: garden, harry potter, mercatino…">
+        <p class="mapsearch__count" id="map-search-count" role="status" aria-live="polite"></p>
+      </div>
     </div>
     ${map.routes
       .map(
         (r) => `
-      <section class="maproute" aria-labelledby="route-${r.id}">
+      <section class="maproute" data-section aria-labelledby="route-${r.id}">
         <div class="maproute__head">
           <h2 class="maproute__title" id="route-${r.id}">${r.title}</h2>
           <p class="maproute__when">${r.when}</p>
@@ -106,7 +112,7 @@
       </section>`
       )
       .join('')}
-    <section class="maproute" aria-labelledby="route-sights">
+    <section class="maproute" data-section aria-labelledby="route-sights">
       <div class="maproute__head">
         <h2 class="maproute__title" id="route-sights">${map.sights.title}</h2>
         <p class="maproute__desc">${map.sights.desc}</p>
@@ -158,15 +164,16 @@
     const cat = map.categories[p.type];
     const popup = `
       <div class="mappop">
-        <img class="mappop__img" src="${p.photo}" alt="${p.name}" loading="lazy"
-             onerror="this.style.display='none'">
+        ${p.photo
+          ? `<img class="mappop__img" src="${p.photo}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'">`
+          : ''}
         <div class="mappop__body">
           <p class="mappop__cat mappop__cat--${p.type}">${cat.icon} ${cat.label}</p>
           <h3 class="mappop__name">${badge(p, ' mapnum--sm')} ${p.name}</h3>
           <p class="mappop__what">${p.what}</p>
           <div class="mappop__foot">
             <a href="${placeUrl(p)}" target="_blank" rel="noopener">Apri in Google Maps ↗</a>
-            <a class="mappop__credit" href="${photoPage(p.photo)}" target="_blank" rel="noopener">Foto: Wikimedia</a>
+            ${p.photo ? `<a class="mappop__credit" href="${photoPage(p.photo)}" target="_blank" rel="noopener">Foto: Wikimedia</a>` : ''}
           </div>
         </div>
       </div>`;
@@ -179,7 +186,11 @@
   });
 
   const allBounds = L.latLngBounds(map.places.map((p) => [p.lat, p.lng]));
-  lmap.fitBounds(allBounds, { padding: [30, 30] });
+  // All'apertura si inquadra solo il centro: con Kew e Greenwich dentro la
+  // mappa partirebbe troppo lontana e i numeri del centro si accavallano.
+  const startPlaces = map.places.filter((p) => map.startRoutes.includes(p.route));
+  const startBounds = L.latLngBounds(startPlaces.map((p) => [p.lat, p.lng]));
+  lmap.fitBounds(startBounds, { padding: [20, 20] });
 
   function setActive(key) {
     side.querySelectorAll('.maplist__btn').forEach((b) => {
@@ -193,9 +204,9 @@
     if (window.matchMedia('(max-width: 860px)').matches) {
       $('map').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
-    // setView invece di flyTo: niente attesa di fine animazione, così tocchi
-    // veloci su più posti non lasciano la mappa a metà.
-    lmap.setView(marker.getLatLng(), Math.max(lmap.getZoom(), 16));
+    // Salto diretto, senza animazione: se la mappa sta ancora scorrendo,
+    // il popup non riesce a spostarla per farsi spazio e resta tagliato.
+    lmap.setView(marker.getLatLng(), Math.max(lmap.getZoom(), 16), { animate: false });
     marker.openPopup();
   }
 
@@ -213,15 +224,80 @@
     if (filterBtn) {
       const on = filterBtn.getAttribute('aria-pressed') !== 'true';
       filterBtn.setAttribute('aria-pressed', String(on));
-      const type = filterBtn.dataset.filter;
-      markers.forEach(({ marker, place }) => {
-        if (place.type !== type) return;
-        if (on) marker.addTo(lmap);
-        else marker.remove();
-      });
-      side.querySelectorAll(`.maplist__item[data-type="${type}"]`).forEach((li) => (li.hidden = !on));
+      if (on) activeTypes.add(filterBtn.dataset.filter);
+      else activeTypes.delete(filterBtn.dataset.filter);
+      applyFilters();
     }
   });
+
+  /* ── Filtri e ricerca ─────────────────────────────────────── */
+  // Un posto si vede se la sua categoria è attiva e se il testo cercato
+  // compare nel nome, nella descrizione, nell'indirizzo o nella categoria
+  // (senza badare a maiuscole e accenti). Il nome del giro resta fuori:
+  // "garden" troverebbe tutto il giro "Piccadilly e Covent Garden".
+  const activeTypes = new Set(Object.keys(map.categories));
+  const normalize = (text) =>
+    text
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[’']/g, '');
+
+  const searchText = new Map();
+  map.places.forEach((p) => {
+    const parts = [p.name, p.what, p.gmaps, map.categories[p.type].label];
+    searchText.set(p.key, normalize(parts.concat(p.keywords || []).join(' ')));
+  });
+
+  const searchInput = $('map-search');
+  const searchCount = $('map-search-count');
+  searchInput.addEventListener('input', applyFilters);
+
+  // Su telefono la mappa resta fissa in alto e coprirebbe la casella:
+  // quando la si tocca la portiamo subito sotto la mappa.
+  searchInput.addEventListener('focus', () => {
+    if (!window.matchMedia('(max-width: 860px)').matches) return;
+    const gap = searchInput.getBoundingClientRect().top - $('map').getBoundingClientRect().bottom - 12;
+    if (gap < 0 || gap > 120) window.scrollBy({ top: gap });
+  });
+
+  function applyFilters() {
+    const words = normalize(searchInput.value).split(/\s+/).filter(Boolean);
+    let shown = 0;
+
+    markers.forEach(({ marker, place }, key) => {
+      const text = searchText.get(key);
+      const visible = activeTypes.has(place.type) && words.every((w) => text.includes(w));
+      side.querySelector(`[data-place="${key}"]`).closest('li').hidden = !visible;
+      if (visible) {
+        shown += 1;
+        marker.addTo(lmap);
+      } else {
+        marker.remove();
+      }
+    });
+
+    side.querySelectorAll('[data-section]').forEach((section) => {
+      section.hidden = !section.querySelector('.maplist__item:not([hidden])');
+    });
+
+    if (!words.length) {
+      searchCount.textContent = '';
+      return;
+    }
+    searchCount.textContent = shown
+      ? `${shown} ${shown === 1 ? 'posto trovato' : 'posti trovati'}`
+      : 'Nessun posto trovato. Prova con un’altra parola.';
+
+    // Con pochi risultati la mappa li inquadra tutti.
+    const found = [...markers.values()].filter(({ marker }) => lmap.hasLayer(marker));
+    if (found.length) {
+      lmap.fitBounds(L.latLngBounds(found.map(({ place }) => [place.lat, place.lng])), {
+        padding: [40, 40],
+        maxZoom: 16,
+      });
+    }
+  }
 
   /* ── Dove siamo ───────────────────────────────────────────── */
   // Il browser chiede il permesso la prima volta; funziona solo su https
@@ -299,7 +375,7 @@
       firstFix = false;
       // Se siamo lontani da tutti i posti (es. a casa) mostriamo comunque i posti.
       if (allBounds.pad(0.5).contains(latlng)) lmap.flyTo(latlng, 16, { duration: 0.8 });
-      else lmap.fitBounds(allBounds.extend(latlng), { padding: [30, 30] });
+      else lmap.fitBounds(startBounds.extend(latlng), { padding: [30, 30] });
     }
 
     const here = L.latLng(latlng);
