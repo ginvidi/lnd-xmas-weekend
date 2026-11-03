@@ -1,0 +1,453 @@
+/* ── MAPPA ────────────────────────────────────────────────────
+   Desktop: lista a sinistra e mappa a destra, a tutta altezza.
+   Telefono: mappa fissata in alto sotto la barra, lista che scorre sotto. */
+.mapapp {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  grid-template-areas: 'side map';
+  height: calc(100vh - 57px);
+  height: calc(100dvh - 57px);
+}
+
+.mapapp__map {
+  grid-area: map;
+  position: relative;
+}
+
+#map {
+  position: absolute;
+  inset: 0;
+  background: #e8ecef;
+  font-family: var(--font-body);
+}
+
+.mapside {
+  grid-area: side;
+  overflow-y: auto;
+  padding: 28px 24px 40px;
+  border-right: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.page-map footer {
+  display: none;
+}
+
+@media (max-width: 860px) {
+  .mapapp {
+    display: block;
+    height: auto;
+  }
+
+  .mapapp__map {
+    position: sticky;
+    top: 57px;
+    z-index: 5;
+    height: 46vh;
+    height: 46dvh;
+    border-bottom: 1px solid var(--border);
+    scroll-margin-top: 57px;
+  }
+
+  #map {
+    scroll-margin-top: 57px;
+  }
+
+  .mapside {
+    overflow: visible;
+    border-right: none;
+    padding: 24px 16px 32px;
+  }
+
+  .page-map footer {
+    display: block;
+  }
+
+  /* Più specifico della regola base, che sta più in basso nel file. */
+  .leaflet-popup .mappop__img {
+    height: 100px;
+  }
+}
+
+/* ── Numeri: due colori, uno per categoria ─────────────────── */
+.mapnum {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.mapnum--shop {
+  background: var(--berry);
+  color: #fff;
+}
+
+.mapnum--lights {
+  background: var(--gold);
+  color: #2a1d08;
+}
+
+.mapnum--market {
+  background: var(--pine);
+  color: #fff;
+}
+
+/* Musei e monumenti: niente numero, una piccola icona su fondo chiaro. */
+.mapnum--icon {
+  background: var(--cream);
+  font-size: 1rem;
+}
+
+.mapnum--icon.mapnum--pin {
+  width: 30px;
+  height: 30px;
+  border-color: var(--surface-2);
+}
+
+.mapnum--icon.mapnum--sm {
+  font-size: 0.8rem;
+}
+
+.mapnum--pin {
+  width: 32px;
+  height: 32px;
+  border: 2px solid #fff;
+  box-shadow: 0 3px 8px rgba(4, 10, 20, 0.45);
+  cursor: pointer;
+}
+
+.mapnum--sm {
+  width: 22px;
+  height: 22px;
+  font-size: 0.72rem;
+  vertical-align: 2px;
+}
+
+/* ── Intestazione e filtri ─────────────────────────────────── */
+.mapside__title {
+  margin-top: 8px;
+  font-size: 1.7rem;
+  line-height: 1.15;
+}
+
+.mapside__text {
+  margin-top: 10px;
+  color: var(--text-dim);
+  font-size: 0.92rem;
+}
+
+.mapside__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.mapfilter {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text);
+  font: 500 0.88rem var(--font-body);
+  cursor: pointer;
+  transition: opacity 0.15s ease, background 0.15s ease;
+}
+
+.mapfilter__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.mapfilter--shop .mapfilter__dot { background: var(--berry); }
+.mapfilter--lights .mapfilter__dot { background: var(--gold); }
+.mapfilter--market .mapfilter__dot { background: var(--pine); }
+.mapfilter--sight .mapfilter__dot { background: var(--cream); }
+
+.mapfilter[aria-pressed="false"] {
+  opacity: 0.45;
+  background: transparent;
+}
+
+.mapfilter[aria-pressed="false"] .mapfilter__dot {
+  background: transparent;
+  box-shadow: inset 0 0 0 2px var(--text-dim);
+}
+
+/* ── Giri a piedi ──────────────────────────────────────────── */
+.maproute {
+  margin-top: 28px;
+  padding: 0;
+}
+
+.maproute__head {
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+}
+
+.maproute__title {
+  font-size: 1.15rem;
+}
+
+.maproute__when {
+  margin-top: 2px;
+  color: var(--gold);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.maproute__desc {
+  margin-top: 6px;
+  color: var(--text-dim);
+  font-size: 0.88rem;
+}
+
+.maproute__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.mapbtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 40px;
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  color: var(--text);
+  font: 600 0.85rem var(--font-body);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.mapbtn--primary {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #2a1d08;
+}
+
+.mapbtn:focus-visible,
+.mapfilter:focus-visible,
+.maplist__btn:focus-visible,
+.maplocate:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* ── Elenco dei posti ──────────────────────────────────────── */
+.maplist {
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.maplist__btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.maplist__btn:hover {
+  background: var(--surface);
+}
+
+.maplist__btn.is-active {
+  background: var(--surface-2);
+  border-color: var(--border);
+}
+
+.maplist__body {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.maplist__name {
+  font-weight: 600;
+  color: var(--cream);
+}
+
+.maplist__meta {
+  color: var(--text-dim);
+  font-size: 0.8rem;
+}
+
+.maplist__dist {
+  color: #7fb2ff;
+  font-weight: 600;
+}
+
+/* ── Popup ─────────────────────────────────────────────────── */
+.leaflet-popup-content-wrapper {
+  padding: 0;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow-card);
+}
+
+.leaflet-popup-content {
+  margin: 0;
+  width: 260px !important;
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.leaflet-popup-tip {
+  background: var(--surface);
+}
+
+.leaflet-container a.leaflet-popup-close-button {
+  top: 6px;
+  right: 6px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(14, 23, 41, 0.75);
+  color: #fff;
+  font: 20px/28px var(--font-body);
+}
+
+.mappop__img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  background: var(--surface-2);
+}
+
+.mappop__body {
+  padding: 12px 14px 14px;
+}
+
+.mappop__cat {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.mappop__cat--shop { color: #e47a90; }
+.mappop__cat--lights { color: var(--gold); }
+.mappop__cat--market { color: #6fc497; }
+.mappop__cat--sight { color: var(--cream); }
+
+.mappop__name {
+  margin-top: 4px;
+  font-size: 1.1rem;
+  line-height: 1.25;
+}
+
+.leaflet-popup-content p.mappop__what {
+  margin: 6px 0 0;
+  color: var(--text-dim);
+}
+
+.leaflet-popup-content p.mappop__cat {
+  margin: 0;
+}
+
+.mappop__foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+.leaflet-container .mappop__foot a {
+  color: var(--gold);
+}
+
+.leaflet-container .mappop__foot a.mappop__credit {
+  color: var(--text-dim);
+  font-size: 0.72rem;
+  font-weight: 400;
+}
+
+/* ── Pulsante "Dove siamo" e posizione ─────────────────────── */
+.maplocate {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 40px;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 999px;
+  background: #fff;
+  color: #14213a;
+  font: 600 0.88rem var(--font-body);
+  box-shadow: 0 3px 10px rgba(4, 10, 20, 0.3);
+  cursor: pointer;
+}
+
+.maplocate[aria-pressed="true"] {
+  background: #2b7de9;
+  color: #fff;
+}
+
+.maplocate.is-loading {
+  opacity: 0.75;
+}
+
+.mapme {
+  display: block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background: #2b7de9;
+  box-shadow: 0 0 0 6px rgba(43, 125, 233, 0.25), 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+.maptoast {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  z-index: 1000;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: calc(100% - 32px);
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 0.88rem;
+  box-shadow: var(--shadow-card);
+}
+
+.leaflet-control-attribution {
+  font-size: 10px;
+}

@@ -5,6 +5,7 @@ window.App = window.App || {};
 const NAV_PAGES = [
   { id: 'itinerary', href: 'index.html', icon: '📅', label: 'Itinerario' },
   { id: 'missions', href: 'missioni.html', icon: '🎯', label: 'Missioni' },
+  { id: 'map', href: 'mappa.html', icon: '🗺️', label: 'Mappa' },
 ];
 
 window.App.renderNav = function renderNav(container, activeId) {

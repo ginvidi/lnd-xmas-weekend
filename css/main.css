@@ -1,16 +1,17 @@
 /* Entry point: importa i token prima di tutto, poi base e i moduli
    per sezione. L'ordine segue quello del DOM in index.html. */
-@import 'tokens.css?v=2';
-@import 'base.css?v=2';
-@import 'snow.css?v=2';
-@import 'nav.css?v=2';
-@import 'header.css?v=2';
-@import 'itinerary.css?v=2';
-@import 'choice.css?v=2';
-@import 'highlights.css?v=2';
-@import 'info.css?v=2';
-@import 'missions.css?v=2';
-@import 'footer.css?v=2';
+@import 'tokens.css?v=5';
+@import 'base.css?v=5';
+@import 'snow.css?v=5';
+@import 'nav.css?v=5';
+@import 'header.css?v=5';
+@import 'itinerary.css?v=5';
+@import 'choice.css?v=5';
+@import 'highlights.css?v=5';
+@import 'info.css?v=5';
+@import 'missions.css?v=5';
+@import 'map.css?v=5';
+@import 'footer.css?v=5';
 
 main {
   position: relative;

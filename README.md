@@ -6,11 +6,13 @@ A couple of Matteo's friends are coming to visit him in London for a Christmas w
 
 - 🗺️ **Activities & itinerary:** https://ginvidi.github.io/lnd-xmas-weekend/
 - 🎯 **Missions:** https://ginvidi.github.io/lnd-xmas-weekend/missioni.html
+- 🎄 **Christmas map:** https://ginvidi.github.io/lnd-xmas-weekend/mappa.html
 
 ## What's inside
 
 - **Activities** (`index.html`) – day-by-day itinerary, highlights and useful info for the weekend.
 - **Missions** (`missioni.html`) – a challenge for each place we visit, to be completed together. Progress is saved in the browser.
+- **Map** (`mappa.html`) – shops with Christmas decorations, Christmas lights and Christmas markets on one map (three colours), plus the museums as small icons, with photos, your live location and the walking routes as Google Maps links. Places and routes are in `js/map-content.js`.
 
 The site is a static page (HTML, CSS and plain JavaScript) published with GitHub Pages; the content is in Italian.
 

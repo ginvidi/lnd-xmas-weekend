@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0e1729">
+  <meta name="description" content="Mappa dei negozi decorati, delle luci e dei mercatini di Natale a Londra, con i percorsi su Google Maps.">
+  <title>Londra · Mappa di Natale</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <link rel="stylesheet" href="css/main.css?v=5">
+</head>
+<body class="page-map">
+
+  <nav class="topnav" id="topnav" aria-label="Pagine"></nav>
+
+  <main class="mapapp">
+    <div class="mapapp__map">
+      <div id="map" role="region" aria-label="Mappa di Londra con negozi, luci e mercatini di Natale"></div>
+      <p class="maptoast" id="map-toast" role="status" hidden></p>
+    </div>
+    <aside class="mapside" id="map-side" aria-label="Elenco dei posti"></aside>
+  </main>
+
+  <footer id="footer"></footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script src="js/content.js?v=5"></script>
+  <script src="js/map-content.js?v=5"></script>
+  <script src="js/store.js?v=5"></script>
+  <script src="js/nav.js?v=5"></script>
+  <script src="js/render/footer.js?v=5"></script>
+  <script src="js/map-main.js?v=5"></script>
+</body>
+</html>
