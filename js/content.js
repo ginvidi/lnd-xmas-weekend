@@ -26,14 +26,45 @@ window.CONTENT = {
       {
         number: '01',
         label: 'Sabato',
-        theme: 'Musei, parco + Harrods',
+        theme: 'Museo, parco + Harrods',
         date: '6 Dicembre',
         items: [
           {
-            time: '10:00',
-            icon: '🦕',
-            title: 'Natural History Museum',
-            desc: 'Si parte dai dinosauri e dalla balena in Hintze Hall.',
+            type: 'choice',
+            title: 'Mattina: quale museo?',
+            options: [
+              {
+                label: 'Opzione 1 · Science Museum',
+                recommended: true,
+                summary: 'Con il Pokémon Space Trail: gratis, fino al 3 gennaio. Ingresso gratuito, meglio prenotare i biglietti online.',
+                blocks: [
+                  {
+                    time: '10:00',
+                    icon: '🚀',
+                    title: 'Science Museum',
+                    desc: 'Apre alle 10. Razzi, la capsula Apollo 10 e giochi scientifici da toccare.',
+                  },
+                  {
+                    time: 'Mattina',
+                    icon: '⚡',
+                    title: 'Pokémon Space Trail',
+                    desc: 'Si prende il foglio del percorso gratis nella Energy Hall, al piano terra, poi si cercano le tappe in 9 sale: missioni spaziali dell’ESA e i Pokémon legati allo spazio. C’è anche il negozio Pokémon x ESA.',
+                  },
+                ],
+              },
+              {
+                label: 'Opzione 2 · Natural History Museum',
+                summary: 'Dinosauri e balena: è proprio accanto, su Cromwell Road.',
+                blocks: [
+                  {
+                    time: '10:00',
+                    icon: '🦕',
+                    title: 'Natural History Museum',
+                    desc: 'Si parte dai dinosauri e dalla balena in Hintze Hall.',
+                  },
+                ],
+              },
+            ],
           },
           {
             time: 'Pranzo',
@@ -77,14 +108,14 @@ window.CONTENT = {
                 ],
               },
               {
-                label: 'Opzione 2 · Science Museum',
+                label: 'Opzione 2 · L’altro museo',
                 summary: 'Se piove o fa troppo freddo: si resta al chiuso.',
                 blocks: [
                   {
                     time: '14:00',
-                    icon: '🚀',
-                    title: 'Science Museum',
-                    desc: 'A due passi dal Natural History Museum, dopo pranzo e con più calma.',
+                    icon: '🏛️',
+                    title: 'Il museo che non avete visto',
+                    desc: 'Natural History Museum o Science Museum: sono uno accanto all’altro, dopo pranzo e con più calma.',
                   },
                   {
                     time: 'Pomeriggio',

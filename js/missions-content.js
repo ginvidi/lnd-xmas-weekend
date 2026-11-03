@@ -50,7 +50,7 @@ window.MISSIONS = {
   },
   days: [
     { id: 'always', label: '🎒 Per tutto il weekend' },
-    { id: 'sat', label: '🦕 Sabato 6 dicembre · Musei, parco + Harrods' },
+    { id: 'sat', label: '🚀 Sabato 6 dicembre · Museo, parco + Harrods' },
     { id: 'sun', label: '🌉 Domenica 7 dicembre · a seconda dell’opzione' },
     { id: 'mon', label: '✨ Lunedì 8 dicembre · Luci di Natale' },
   ],
@@ -104,8 +104,31 @@ window.MISSIONS = {
 
     /* ── Sabato ─────────────────────────────────────────────── */
     {
+      id: 'scienza',
+      day: 'sat',
+      stars: 150,
+      icon: '🚀',
+      title: 'Lo Scienziato in Missione',
+      location: '📍 Science Museum · Exhibition Road',
+      desc: 'Qui ci sono macchine vere che hanno cambiato il mondo: motori a vapore enormi, razzi e perfino una capsula che è andata intorno alla Luna.',
+      game: {
+        title: '🎮 Il tuo gioco · Il laboratorio segreto',
+        items: [
+          'La capsula Apollo 10, andata davvero intorno alla Luna 🌕',
+          'Un motore a vapore gigante 🚂',
+          'Un razzo o un satellite 🛰️',
+          'Una macchina che fai muovere tu, con un bottone o una leva 🕹️',
+          'Un’invenzione che usi anche tu ogni giorno 💡',
+          'Un oggetto più vecchio della bisnonna ⏳',
+          'Una tappa del Pokémon Space Trail (il foglio è nella Energy Hall) ⚡',
+        ],
+      },
+      bonus: '✨ Sfida bonus: inventa una macchina che fa i compiti al posto tuo. Spiega a mamma e papà come funziona in 30 secondi!',
+    },
+    {
       id: 'dinosauri',
       day: 'sat',
+      choice: 'Natural History Museum',
       stars: 150,
       icon: '🦕',
       title: 'Il Cacciatore di Dinosauri',
@@ -146,27 +169,6 @@ window.MISSIONS = {
       },
     },
     {
-      id: 'scienza',
-      day: 'sat',
-      stars: 150,
-      icon: '🚀',
-      title: 'Lo Scienziato in Missione',
-      location: '📍 Science Museum · Exhibition Road',
-      desc: 'Qui ci sono macchine vere che hanno cambiato il mondo: motori a vapore enormi, razzi e perfino una capsula che è andata intorno alla Luna.',
-      game: {
-        title: '🎮 Il tuo gioco · Il laboratorio segreto',
-        items: [
-          'La capsula Apollo 10, andata davvero intorno alla Luna 🌕',
-          'Un motore a vapore gigante 🚂',
-          'Un razzo o un satellite 🛰️',
-          'Una macchina che fai muovere tu, con un bottone o una leva 🕹️',
-          'Un’invenzione che usi anche tu ogni giorno 💡',
-          'Un oggetto più vecchio della bisnonna ⏳',
-        ],
-      },
-      bonus: '✨ Sfida bonus: inventa una macchina che fa i compiti al posto tuo. Spiega a mamma e papà come funziona in 30 secondi!',
-    },
-    {
       id: 'parco',
       day: 'sat',
       optional: true,
@@ -174,7 +176,7 @@ window.MISSIONS = {
       icon: '🦢',
       title: 'L’Esploratore del Parco',
       location: '📍 Kensington Gardens e Hyde Park · fino a Knightsbridge',
-      desc: 'Al posto del Science Museum, si attraversa il parco più famoso di Londra a piedi. Qui vive Peter Pan, il bambino che non voleva crescere!',
+      desc: 'Al posto del secondo museo, si attraversa il parco più famoso di Londra a piedi. Qui vive Peter Pan, il bambino che non voleva crescere!',
       game: {
         title: '🎮 Il tuo gioco · La mappa del tesoro',
         items: [
