@@ -1,9 +1,11 @@
 /* Pagina mappa: Leaflet con i segnaposto numerati (due colori, uno per
    categoria), lista laterale cliccabile, posizione dal GPS del telefono
-   e link ai percorsi a piedi su Google Maps. */
+   e link ai percorsi a piedi su Google Maps. Sopra, in rosso, i bus
+   che passano sotto le luci (map-buses.js), ognuno si può nascondere. */
 (function main() {
   const content = window.CONTENT;
   const map = window.MAP_CONTENT;
+  const buses = window.MAP_BUSES;
   const $ = (id) => document.getElementById(id);
 
   document.title = map.meta.title;
@@ -87,6 +89,9 @@
           </button>`
           )
           .join('')}
+        <button class="mapfilter mapfilter--bus" type="button" data-bus-all aria-pressed="true">
+          <span class="mapfilter__dot" aria-hidden="true"></span>Bus
+        </button>
       </div>
       <div class="mapsearch">
         <label class="mapsearch__label" for="map-search">Cerca un posto</label>
@@ -112,6 +117,30 @@
       </section>`
       )
       .join('')}
+    <section class="maproute" aria-labelledby="route-buses">
+      <div class="maproute__head">
+        <h2 class="maproute__title" id="route-buses">🚌 ${buses.title}</h2>
+        <p class="maproute__desc">${buses.desc}</p>
+        <p class="mapclosed"><strong>🚧 ${buses.closed.title}.</strong> ${buses.closed.text}</p>
+      </div>
+      <ul class="maplist">
+        ${buses.routes
+          .map(
+            (b) => `
+          <li class="maplist__item">
+            <button class="maplist__btn mapbus" type="button" data-bus="${b.n}" aria-pressed="true">
+              <span class="busnum">${b.n}</span>
+              <span class="maplist__body">
+                <span class="maplist__name">${b.title}</span>
+                <span class="maplist__meta">${b.desc}</span>
+              </span>
+              <span class="mapbus__state" aria-hidden="true"></span>
+            </button>
+          </li>`
+          )
+          .join('')}
+      </ul>
+    </section>
     <section class="maproute" data-section aria-labelledby="route-sights">
       <div class="maproute__head">
         <h2 class="maproute__title" id="route-sights">${map.sights.title}</h2>
@@ -150,6 +179,58 @@
       L.polyline(pts, { color: '#1c2e4a', weight: 3, opacity: 0.55, dashArray: '2 8', lineCap: 'round' }).addTo(lmap);
     }
   });
+
+  /* ── Bus ──────────────────────────────────────────────────── */
+  // Rosso dei bus di Londra con un bordo bianco, in un pannello sotto le
+  // linee dei giri a piedi e sotto i segnaposto. Il numero del bus compare
+  // in due punti della linea.
+  lmap.createPane('buses').style.zIndex = 390;
+  const busLayer = L.layerGroup().addTo(lmap);
+  const busRoutes = new Map();
+  const busPopup = (b) => `
+    <div class="mappop"><div class="mappop__body">
+      <p class="mappop__cat mappop__cat--bus">🚌 Bus</p>
+      <h3 class="mappop__name"><span class="busnum busnum--sm">${b.n}</span> ${b.title}</h3>
+      <p class="mappop__what">${b.desc}</p>
+    </div></div>`;
+
+  buses.routes.forEach((b) => {
+    const casing = L.polyline(b.path, { pane: 'buses', color: '#fff', weight: 8, opacity: 0.85, interactive: false });
+    const line = L.polyline(b.path, { pane: 'buses', color: '#d6261f', weight: 4, opacity: 0.9, lineJoin: 'round' })
+      .bindPopup(busPopup(b), { maxWidth: 280, minWidth: 220 });
+    line.on('mouseover', () => line.setStyle({ weight: 6, opacity: 1 }));
+    line.on('mouseout', () => line.setStyle({ weight: 4, opacity: 0.9 }));
+    const labels = [1 / 3, 2 / 3].map((f) =>
+      L.marker(b.path[Math.floor(b.path.length * f)], {
+        icon: L.divIcon({ className: '', html: `<span class="busnum busnum--pin">${b.n}</span>`, iconSize: [26, 20], iconAnchor: [13, 10] }),
+        pane: 'buses',
+        keyboard: false,
+        title: `Bus ${b.n}`,
+      }).bindPopup(busPopup(b), { maxWidth: 280, minWidth: 220 })
+    );
+    const group = L.layerGroup([casing, line, ...labels]).addTo(busLayer);
+    busRoutes.set(b.n, { group, line });
+  });
+
+  // Il tratto pedonale di Oxford Street: grigio tratteggiato, niente bus.
+  L.polyline(buses.closed.path, { pane: 'buses', color: '#5b6577', weight: 7, opacity: 0.75, dashArray: '1 10', lineCap: 'round' })
+    .bindPopup(`<div class="mappop"><div class="mappop__body"><p class="mappop__cat mappop__cat--bus">🚧 Niente bus</p><h3 class="mappop__name">${buses.closed.title}</h3><p class="mappop__what">${buses.closed.text}</p></div></div>`, { maxWidth: 280, minWidth: 220 })
+    .addTo(busLayer);
+
+  function toggleBus(btn) {
+    const on = btn.getAttribute('aria-pressed') !== 'true';
+    const { group, line } = busRoutes.get(btn.dataset.bus);
+    btn.setAttribute('aria-pressed', String(on));
+    if (!on) return group.remove();
+    group.addTo(busLayer);
+    // Riaccendendo un bus lo si inquadra, così si vede dove passa.
+    if (lmap.hasLayer(busLayer)) {
+      if (window.matchMedia('(max-width: 860px)').matches) {
+        $('map').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      lmap.fitBounds(line.getBounds(), { padding: [30, 30] });
+    }
+  }
 
   const markers = new Map();
   map.places.forEach((p) => {
@@ -218,6 +299,18 @@
     if (shareBtn) {
       const r = map.routes.find((x) => x.id === shareBtn.dataset.share);
       return share(`${r.title} · Natale a Londra`, routeUrl(r), shareBtn);
+    }
+
+    const busBtn = e.target.closest('[data-bus]');
+    if (busBtn) return toggleBus(busBtn);
+
+    const busAllBtn = e.target.closest('[data-bus-all]');
+    if (busAllBtn) {
+      const on = busAllBtn.getAttribute('aria-pressed') !== 'true';
+      busAllBtn.setAttribute('aria-pressed', String(on));
+      if (on) busLayer.addTo(lmap);
+      else busLayer.remove();
+      return;
     }
 
     const filterBtn = e.target.closest('[data-filter]');
