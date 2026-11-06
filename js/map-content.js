@@ -37,7 +37,7 @@ window.MAP_CONTENT = {
     {
       id: 'knightsbridge',
       title: 'Giro Knightsbridge',
-      when: 'Sabato 6 · dopo Hyde Park',
+      when: 'Sabato 6 · dopo lo Science Museum',
       desc: 'Da Harrods a Winter Wonderland, circa 2,5 km a piedi.',
     },
     {
@@ -634,7 +634,7 @@ window.MAP_CONTENT = {
       type: 'sight',
       icon: '🦕',
       name: 'Natural History Museum',
-      what: 'Dinosauri e la balena blu sospesa in Hintze Hall. Ingresso gratuito. Sabato 6, in alternativa al Science Museum.',
+      what: 'Dinosauri e la balena blu sospesa in Hintze Hall. Ingresso gratuito. Sabato 6, mattina, in alternativa al parco.',
       lat: 51.4961,
       lng: -0.1764,
       gmaps: 'Natural History Museum, Cromwell Rd, London SW7 5BD',
@@ -645,7 +645,7 @@ window.MAP_CONTENT = {
       icon: '🔬',
       name: 'Science Museum',
       keywords: ['pokemon', 'space', 'spazio'],
-      what: 'Razzi, motori e il Pokémon Space Trail (foglio gratis nella Energy Hall, fino al 3 gennaio). Ingresso gratuito, aperto 10–18. Sabato 6, mattina.',
+      what: 'Razzi, motori e il Pokémon Space Trail (foglio gratis nella Energy Hall, fino al 3 gennaio). Ingresso gratuito, aperto 10–18. Sabato 6, pomeriggio.',
       lat: 51.4978,
       lng: -0.1745,
       gmaps: 'Science Museum, Exhibition Rd, London SW7 2DD',

@@ -50,7 +50,7 @@ window.MISSIONS = {
   },
   days: [
     { id: 'always', label: '🎒 Per tutto il weekend' },
-    { id: 'sat', label: '🚀 Sabato 6 dicembre · Museo, parco + Harrods' },
+    { id: 'sat', label: '🚀 Sabato 6 dicembre · Parco, Science Museum + luci' },
     { id: 'sun', label: '🌉 Domenica 7 dicembre · a seconda dell’opzione' },
     { id: 'mon', label: '✨ Lunedì 8 dicembre · Luci di Natale' },
   ],
@@ -175,8 +175,8 @@ window.MISSIONS = {
       stars: 150,
       icon: '🦢',
       title: 'L’Esploratore del Parco',
-      location: '📍 Kensington Gardens e Hyde Park · fino a Knightsbridge',
-      desc: 'Al posto del secondo museo, si attraversa il parco più famoso di Londra a piedi. Qui vive Peter Pan, il bambino che non voleva crescere!',
+      location: '📍 Kensington Gardens · la mattina',
+      desc: 'Prima del museo, una passeggiata nel parco più famoso di Londra. Qui vive Peter Pan, il bambino che non voleva crescere!',
       game: {
         title: '🎮 Il tuo gioco · La mappa del tesoro',
         items: [
@@ -197,7 +197,7 @@ window.MISSIONS = {
       stars: 50,
       icon: '🚌',
       title: 'Il Capitano del Double-Decker',
-      location: '📍 Bus 74 · da South Kensington a Knightsbridge',
+      location: '📍 Bus 74 · da South Kensington a Harrods',
       desc: 'Il viaggio è corto, ma dal piano di sopra di un bus rosso Londra si vede come da una torre.',
       game: {
         title: '🎮 Il tuo gioco · Il posto migliore',
@@ -232,12 +232,33 @@ window.MISSIONS = {
       bonus: '✨ Sfida bonus: se poteste portare a casa una sola decorazione, quale scegliereste? Votate in famiglia!',
     },
     {
+      id: 'bus9',
+      day: 'sat',
+      stars: 80,
+      icon: '✨',
+      title: 'Il Tour delle Luci in Bus',
+      location: '📍 Bus 9 · da Knightsbridge a Trafalgar Square',
+      desc: 'Di sera dal piano di sopra del bus 9 si vede Londra tutta illuminata, come da un trenino di Natale.',
+      game: {
+        title: '🎮 Il tuo gioco · Caccia alle luci',
+        items: [
+          'Prendere il posto davanti al piano di sopra 👀',
+          'L’arco di Hyde Park Corner illuminato 🏛️',
+          'Le vetrine di Fortnum & Mason, il negozio azzurro di Piccadilly 🎁',
+          'I grandi schermi colorati di Piccadilly Circus 📺',
+          'Gli angeli di luce sopra Regent Street 👼',
+          'Il grande albero di Trafalgar Square dal finestrino 🎄',
+        ],
+      },
+      bonus: '✨ Sfida bonus: contate gli alberi di Natale illuminati che vedete dal bus. Chi ne conta di più vince!',
+    },
+    {
       id: 'mercatino',
       day: 'sat',
       stars: 100,
       icon: '🎄',
       title: 'Il Re del Mercatino',
-      location: '📍 Mercatino di Natale (quello che scegliete)',
+      location: '📍 Mercatino di Trafalgar Square',
       desc: 'Casette di legno, lucine e profumo di dolci: il mercatino è il posto perfetto per sentirsi già a Natale.',
       game: {
         title: '🎮 Il tuo gioco · Giro delle bancarelle',

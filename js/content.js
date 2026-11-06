@@ -26,41 +26,47 @@ window.CONTENT = {
       {
         number: '01',
         label: 'Sabato',
-        theme: 'Museo, parco + Harrods',
+        theme: 'Parco, Science Museum + luci',
         date: '6 Dicembre',
         items: [
           {
             type: 'choice',
-            title: 'Mattina: quale museo?',
+            title: 'Mattina: parco o museo?',
             options: [
               {
-                label: 'Opzione 1 · Science Museum',
+                label: 'Opzione 1 · Passeggiata a Kensington Gardens',
                 recommended: true,
-                summary: 'Con il Pokémon Space Trail: gratis, fino al 3 gennaio. Ingresso gratuito, meglio prenotare i biglietti online.',
+                summary: 'Il parco con la luce del giorno: il sole tramonta verso le 15:50, quindi meglio la mattina. Si torna a South Kensington per pranzo.',
                 blocks: [
                   {
                     time: '10:00',
-                    icon: '🚀',
-                    title: 'Science Museum',
-                    desc: 'Apre alle 10. Razzi, la capsula Apollo 10 e giochi scientifici da toccare.',
+                    icon: '🏛️',
+                    title: 'Royal Albert Hall e Albert Memorial',
+                    desc: 'Da South Kensington su per Exhibition Road, circa 10 minuti a piedi. Il memoriale dorato è perfetto per una foto.',
                   },
                   {
-                    time: 'Mattina',
-                    icon: '⚡',
-                    title: 'Pokémon Space Trail',
-                    desc: 'Si prende il foglio del percorso gratis nella Energy Hall, al piano terra, poi si cercano le tappe in 9 sale: missioni spaziali dell’ESA e i Pokémon legati allo spazio. C’è anche il negozio Pokémon x ESA.',
+                    time: '10:30',
+                    icon: '🧚',
+                    title: 'Peter Pan e Diana Memorial Playground',
+                    desc: 'Statua di Peter Pan sul Long Water, poi la nave dei pirati del Diana Memorial Playground (gratis, apre alle 10). Cigni e scoiattoli lungo la strada.',
+                  },
+                  {
+                    time: '12:30',
+                    icon: '🚶',
+                    title: 'Ritorno a South Kensington',
+                    desc: 'Si riscende per Exhibition Road, circa 15–20 minuti a piedi.',
                   },
                 ],
               },
               {
                 label: 'Opzione 2 · Natural History Museum',
-                summary: 'Dinosauri e balena: è proprio accanto, su Cromwell Road.',
+                summary: 'Se piove o fa troppo freddo: dinosauri e balena, proprio accanto al Science Museum.',
                 blocks: [
                   {
                     time: '10:00',
                     icon: '🦕',
                     title: 'Natural History Museum',
-                    desc: 'Si parte dai dinosauri e dalla balena in Hintze Hall.',
+                    desc: 'Si parte dai dinosauri e dalla balena in Hintze Hall. Ingresso gratuito.',
                   },
                 ],
               },
@@ -73,65 +79,40 @@ window.CONTENT = {
             desc: 'In alternativa South Kensington Kitchen. Con calma, senza correre.',
           },
           {
-            type: 'choice',
-            title: 'Dopo pranzo: museo o parco?',
-            options: [
-              {
-                label: 'Opzione 1 · Passeggiata a Hyde Park',
-                recommended: true,
-                summary: 'Niente musei: si arriva a Harrods a piedi attraversando il parco. Partire subito dopo pranzo, il sole tramonta verso le 15:50.',
-                blocks: [
-                  {
-                    time: '14:00',
-                    icon: '🏛️',
-                    title: 'Royal Albert Hall e Albert Memorial',
-                    desc: 'Su per Exhibition Road, circa 10 minuti a piedi. Il memoriale dorato è perfetto per una foto.',
-                  },
-                  {
-                    time: '14:30',
-                    icon: '🧚',
-                    title: 'Kensington Gardens',
-                    desc: 'Statua di Peter Pan sul Long Water. Se c’è energia, Diana Memorial Playground con la nave dei pirati (gratis, 10–15 minuti più in là).',
-                  },
-                  {
-                    time: '15:30',
-                    icon: '🦢',
-                    title: 'Lungo il Serpentine',
-                    desc: 'Cigni e anatre sul lago, poi si esce dal lato di Knightsbridge.',
-                  },
-                  {
-                    time: 'Tramonto',
-                    icon: '🛍️',
-                    title: 'Harrods e Knightsbridge',
-                    desc: 'Dal parco 5–10 minuti a piedi. Christmas World al piano -1, Harvey Nichols e Sloane Street, con le luci già accese.',
-                  },
-                ],
-              },
-              {
-                label: 'Opzione 2 · L’altro museo',
-                summary: 'Se piove o fa troppo freddo: si resta al chiuso.',
-                blocks: [
-                  {
-                    time: '14:00',
-                    icon: '🏛️',
-                    title: 'Il museo che non avete visto',
-                    desc: 'Natural History Museum o Science Museum: sono uno accanto all’altro, dopo pranzo e con più calma.',
-                  },
-                  {
-                    time: 'Pomeriggio',
-                    icon: '🚌',
-                    title: 'Bus 74 fino a Knightsbridge',
-                    desc: 'Si prende a South Kensington Station. Poi giro a piedi: Harrods con il Christmas World al piano -1, Harvey Nichols e Sloane Street.',
-                  },
-                ],
-              },
-            ],
+            time: '13:30',
+            icon: '🚀',
+            title: 'Science Museum',
+            desc: 'Razzi, la capsula Apollo 10 e giochi scientifici da toccare. Ingresso gratuito ma va prenotato online. Aperto fino alle 18.',
+          },
+          {
+            time: 'Pomeriggio',
+            icon: '⚡',
+            title: 'Pokémon Space Trail',
+            desc: 'Si prende il foglio del percorso gratis nella Energy Hall, al piano terra, poi si cercano le tappe in 9 sale: missioni spaziali dell’ESA e i Pokémon legati allo spazio. Il negozio Pokémon x ESA ha biglietti a orario a parte (gratis, finiscono presto): prenotateli insieme all’ingresso.',
+          },
+          {
+            time: '16:30',
+            icon: '🚌',
+            title: 'Bus 74 fino a Harrods',
+            desc: 'Da South Kensington Station, fermata «Harrods» su Brompton Road (5 minuti). Oppure 15 minuti a piedi lungo Brompton Road.',
+          },
+          {
+            time: '17:00',
+            icon: '🛍️',
+            title: 'Harrods e Knightsbridge',
+            desc: 'Facciata illuminata, vetrine di Natale e Christmas World al piano -1. Poi un salto da Harvey Nichols, all’angolo con Sloane Street.',
+          },
+          {
+            time: '18:15',
+            icon: '🚌',
+            title: 'Bus 9 verso Trafalgar Square, passando per le luci',
+            desc: 'Si prende alla fermata «Knightsbridge Station» sulla strada Knightsbridge, davanti a Harvey Nichols, in direzione Aldwych: da Harrods 3–4 minuti a piedi. Salite al piano di sopra, posti davanti. Passa da Hyde Park Corner, lungo Piccadilly (Ritz, Burlington Arcade, Fortnum & Mason illuminato) e da Piccadilly Circus con gli angeli di Regent Street sullo sfondo. Scendete a Trafalgar Square, circa 25–30 minuti. Se la fermata viene saltata, si scende a Charing Cross, a 2 minuti. Se non passa il 9: bus 14 dalla fermata «Harrods» fino a Piccadilly Circus, oppure la Piccadilly line da Knightsbridge a Leicester Square, diretta (10 minuti, ma senza luci).',
           },
           {
             time: 'Sera',
             icon: '🎄',
-            title: 'Mercatini di Natale',
-            desc: 'Giro tra bancarelle, vin brulé e cibo di strada. Il mercatino preciso è ancora da scegliere.',
+            title: 'Mercatino di Trafalgar Square e Leicester Square',
+            desc: 'Il grande albero regalato da Oslo, i canti di Natale e il mercatino davanti alla National Gallery (fino alle 22). Poi 5 minuti a piedi fino a Leicester Square: luci, altro mercatino e pista di pattinaggio. Cena in zona.',
           },
         ],
       },
@@ -362,7 +343,7 @@ window.CONTENT = {
         icon: '🚇',
         title: 'Spostamenti',
         items: [
-          'Bus 74 da South Kensington Station a Knightsbridge',
+          'Sab: bus 74 da South Kensington a Harrods, poi bus 9 da Knightsbridge Station a Trafalgar Square (piano di sopra, per le luci)',
           'Lunedì: Central line da St Paul’s a Oxford Circus, diretta',
           'Tra Tate Modern e St Paul’s si va a piedi sul Millennium Bridge',
           'Greenwich è a 30–40 minuti dal centro, ritorno possibile in battello',
@@ -383,7 +364,7 @@ window.CONTENT = {
         icon: '🍽️',
         title: 'Dove mangiare',
         items: [
-          'Sab: Dishoom o South Kensington Kitchen',
+          'Sab: Dishoom o South Kensington Kitchen, cena intorno a Trafalgar o Leicester Square',
           'Dom: Borough Market, Gabriel’s Wharf o Wahaca Southbank',
           'Lun: Bill’s o Wagamama a Carnaby, dolce da Kaspa’s',
         ],
