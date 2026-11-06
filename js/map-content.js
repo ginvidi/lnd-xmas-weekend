@@ -43,13 +43,13 @@ window.MAP_CONTENT = {
     {
       id: 'thames',
       title: 'Lungo il Tamigi',
-      when: 'Domenica 7 · opzioni 1 e 3',
+      when: 'Domenica 7 o Lunedì 8 mattina · anche solo un pezzo',
       desc: 'Da Trafalgar Square lungo lo Strand, poi sul fiume fino a St Katharine Docks, circa 5 km a piedi. Si può fare anche solo un pezzo.',
     },
     {
       id: 'greenwich',
       title: 'Greenwich',
-      when: 'Domenica 7 · opzione 2',
+      when: 'Domenica 7 · opzione 1, consigliata',
       desc: 'Mercato coperto con le bancarelle di Natale e la Cutty Sark illuminata. Il mercato chiude alle 17:30.',
     },
     {
@@ -73,7 +73,7 @@ window.MAP_CONTENT = {
     {
       id: 'kingscross',
       title: 'King’s Cross',
-      when: 'Extra · per i fan di Harry Potter',
+      when: 'Domenica 7 · opzione 3',
       desc: 'Binario 9¾, albero di St Pancras, mercatino di Granary Square e Coal Drops Yard. Tutto in 10 minuti a piedi.',
     },
     {
@@ -634,7 +634,7 @@ window.MAP_CONTENT = {
       type: 'sight',
       icon: '🦕',
       name: 'Natural History Museum',
-      what: 'Dinosauri e la balena blu sospesa in Hintze Hall. Ingresso gratuito. Sabato 6, mattina, in alternativa al parco.',
+      what: 'Dinosauri e la balena blu sospesa in Hintze Hall. Ingresso gratuito. Sabato 6, mattina (consigliato).',
       lat: 51.4961,
       lng: -0.1764,
       gmaps: 'Natural History Museum, Cromwell Rd, London SW7 5BD',
@@ -665,7 +665,7 @@ window.MAP_CONTENT = {
       type: 'sight',
       icon: '🎨',
       name: 'Tate Modern',
-      what: 'Arte moderna nella vecchia centrale elettrica, con la Turbine Hall e la terrazza panoramica. Ingresso gratuito. Domenica 7.',
+      what: 'Arte moderna nella vecchia centrale elettrica, con la Turbine Hall e la terrazza panoramica. Ingresso gratuito. Lunedì 8, mattina.',
       lat: 51.5076,
       lng: -0.0994,
       gmaps: 'Tate Modern, Bankside, London SE1 9TG',
